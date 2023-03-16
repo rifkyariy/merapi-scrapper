@@ -27,10 +27,7 @@ def seismo(data=[]):
         title = data_element.find("div", class_="panel-heading").text
         image = data_element.find(
             "div", class_="panel-body").find("img")['src']
-        wrapper = {
-            'title': title,
-            'image': image
-        }
+        wrapper = {'title': title, 'image': image}
 
         data.append(wrapper)
 
@@ -40,25 +37,25 @@ def seismo(data=[]):
 @app.route('/request/get-camera-merapi')
 def cameraMerapi(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=22'
-    base64_data = base64.b64encode(requests.get(url).content)
-    data.append({'image': base64_data})
+    base64_data = base64.b64encode(requests.get(url).content).decode("utf-8")
 
-    return data
+    return {'image': base64_data}
 
 
 @app.route('/request/get-camera-merbabu')
 def cameraMerbabu(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=79'
-    base64_data = base64.b64encode(requests.get(url).content)
-    data.append({'image': base64_data})
+    base64_data = base64.b64encode(requests.get(url).content).decode("utf-8")
 
-    return data
+    return {'image': base64_data}
 
 
 @app.route('/request/get-thermal')
-def cameraThermal(data=[]):
+def cameraThermal():
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=106'
-    base64_data = base64.b64encode(requests.get(url).content)
-    data.append({'image': base64_data})
+    base64_data = base64.b64encode(requests.get(url).content).decode("utf-8")
 
-    return data
+    return {'image': base64_data}
+
+
+app.run(host='0.0.0.0', port=81)
