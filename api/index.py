@@ -41,7 +41,8 @@ def seismo(data=[]):
 def cameraMerapi(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=22'
     base64_data = base64.b64encode(requests.get(url).content)
-    data.append(base64_data)
+    data.append({'image': base64_data})
+
     return data
 
 
@@ -49,7 +50,8 @@ def cameraMerapi(data=[]):
 def cameraMerbabu(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=79'
     base64_data = base64.b64encode(requests.get(url).content)
-    data.append(base64_data)
+    data.append({'image': base64_data})
+
     return data
 
 
@@ -57,5 +59,6 @@ def cameraMerbabu(data=[]):
 def cameraThermal(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=106'
     base64_data = base64.b64encode(requests.get(url).content)
-    data.append(base64_data)
+    data.append({'image': base64_data})
+
     return data
