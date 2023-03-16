@@ -56,6 +56,3 @@ def cameraThermal():
     base64_data = base64.b64encode(requests.get(url).content).decode("utf-8")
 
     return {'image': base64_data}
-
-
-app.run(host='0.0.0.0', port=81)
