@@ -37,7 +37,7 @@ def seismo(data=[]):
 
 
 @app.route('/request/get-camera-merapi')
-def seismo(data=[]):
+def cameraMerapi(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view-r.php?id=22&screen=1'
     page = requests.get(url)
     scraper = BeautifulSoup(page.content, "html.parser")
@@ -47,7 +47,7 @@ def seismo(data=[]):
 
 
 @app.route('/request/get-camera-merbabu')
-def seismo(data=[]):
+def cameraMerbabu(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view-r.php?id=79&screen=2'
     page = requests.get(url)
     scraper = BeautifulSoup(page.content, "html.parser")
@@ -57,7 +57,7 @@ def seismo(data=[]):
 
 
 @app.route('/request/get-thermal')
-def seismo(data=[]):
+def cameraThermal(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view-r.php?id=106&screen=7'
     page = requests.get(url)
     scraper = BeautifulSoup(page.content, "html.parser")
