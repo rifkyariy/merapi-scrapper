@@ -40,16 +40,22 @@ def seismo(data=[]):
 @app.route('/request/get-camera-merapi')
 def cameraMerapi(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=22'
-    return base64.b64encode(requests.get(url).content)
+    base64_data = base64.b64encode(requests.get(url).content)
+    data.append(base64_data)
+    return data
 
 
 @app.route('/request/get-camera-merbabu')
 def cameraMerbabu(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=79'
-    return base64.b64encode(requests.get(url).content)
+    base64_data = base64.b64encode(requests.get(url).content)
+    data.append(base64_data)
+    return data
 
 
 @app.route('/request/get-thermal')
 def cameraThermal(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=106'
-    return base64.b64encode(requests.get(url).content)
+    base64_data = base64.b64encode(requests.get(url).content)
+    data.append(base64_data)
+    return data
