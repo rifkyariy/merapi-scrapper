@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import jsonify
 import requests
 from bs4 import BeautifulSoup
 import base64
@@ -39,7 +40,7 @@ def cameraMerapi(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=22'
     base64_data = base64.b64encode(requests.get(url).content).decode("utf-8")
 
-    return {'image': base64_data}
+    return jsonify(base64_data)
 
 
 @app.route('/request/get-camera-merbabu')
@@ -47,7 +48,7 @@ def cameraMerbabu(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=79'
     base64_data = base64.b64encode(requests.get(url).content).decode("utf-8")
 
-    return {'image': base64_data}
+    return base64_data
 
 
 @app.route('/request/get-thermal')
@@ -55,4 +56,4 @@ def cameraThermal():
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=106'
     base64_data = base64.b64encode(requests.get(url).content).decode("utf-8")
 
-    return {'image': base64_data}
+    return jsonify(base64_data)
