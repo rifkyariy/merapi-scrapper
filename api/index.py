@@ -48,7 +48,7 @@ def cameraMerbabu(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=79'
     base64_data = base64.b64encode(requests.get(url).content).decode("utf-8")
 
-    return base64_data
+    return jsonify(base64_data)
 
 
 @app.route('/request/get-thermal')
