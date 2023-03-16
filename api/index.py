@@ -1,6 +1,7 @@
 from flask import Flask
 import requests
 from bs4 import BeautifulSoup
+import base64
 
 app = Flask(__name__)
 
@@ -39,28 +40,16 @@ def seismo(data=[]):
 @app.route('/request/get-camera-merapi')
 def cameraMerapi(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=22'
-    page = requests.get(url)
-    scraper = BeautifulSoup(page.content, "html.parser")
-    data = scraper.find("img")['src']
-
-    return data
+    return base64.b64encode(requests.get(url).content)
 
 
 @app.route('/request/get-camera-merbabu')
 def cameraMerbabu(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=79'
-    page = requests.get(url)
-    scraper = BeautifulSoup(page.content, "html.parser")
-    data = scraper.find("img")['src']
-
-    return data
+    return base64.b64encode(requests.get(url).content)
 
 
 @app.route('/request/get-thermal')
 def cameraThermal(data=[]):
     url = 'https://bpptkg.esdm.go.id/viewer_images/view.php?id=106'
-    page = requests.get(url)
-    scraper = BeautifulSoup(page.content, "html.parser")
-    data = scraper.find("img")['src']
-
-    return data
+    return base64.b64encode(requests.get(url).content)
