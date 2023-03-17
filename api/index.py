@@ -18,7 +18,8 @@ def about():
 
 
 @app.route('/request/get-seismo')
-def seismo(data=[]):
+def seismo():
+    data = []
     url = 'https://bpptkg.esdm.go.id/pub/sismogram.php'
     page = requests.get(url)
     scraper = BeautifulSoup(page.content, "html.parser")
@@ -60,7 +61,8 @@ def cameraThermal():
 
 
 @app.route('/request/get-earthquake-latest')
-def ingpoGempa(data=[]):
+def ingpoGempa():
+    data = []
     url = 'https://www.bmkg.go.id/gempabumi-dirasakan.html'
     page = requests.get(url)
     scraper = BeautifulSoup(page.content, "html.parser")
