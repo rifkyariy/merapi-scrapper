@@ -59,7 +59,7 @@ def cameraThermal():
     return jsonify(base64_data)
 
 
-@app.route('/request/get-gempa-latest')
+@app.route('/request/get-earthquake-latest')
 def ingpoGempa(data=[]):
     url = 'https://www.bmkg.go.id/gempabumi-dirasakan.html'
     page = requests.get(url)
