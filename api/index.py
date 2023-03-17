@@ -57,3 +57,32 @@ def cameraThermal():
     base64_data = base64.b64encode(requests.get(url).content).decode("utf-8")
 
     return jsonify(base64_data)
+
+
+@app.route('/request/get-gempa-latest')
+def ingpoGempa(data=[]):
+    url = 'https://www.bmkg.go.id/gempabumi-dirasakan.html'
+    page = requests.get(url)
+    scraper = BeautifulSoup(page.content, "html.parser")
+    data_containers = scraper.find(
+        "table", class_="table").find("tbody").find_all("tr")
+    for data_element in data_containers[:2]:
+        cols = data_element.find_all("td")
+        col_wrap = []
+        for index, col in enumerate(cols):
+            if (index == 1):
+                removedAttr = str(col.text)[:-4]
+                time = removedAttr[-8:].replace(':', '')
+                raw = removedAttr[:-8].split('/')
+                date = raw[2]+raw[1]+raw[0]
+                url = "https://ews.bmkg.go.id/TEWS/data/"+date+time+".mmi.jpg"
+
+                base64_data = base64.b64encode(
+                    requests.get(url).content).decode("utf-8")
+                col_wrap.append(base64_data)
+
+            if (index == 5):
+                col_wrap.append(col.find('a').text)
+        data.append(col_wrap)
+
+    return jsonify(data)
