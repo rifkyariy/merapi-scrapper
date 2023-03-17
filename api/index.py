@@ -68,7 +68,7 @@ def ingpoGempa(data=[]):
         "table", class_="table").find("tbody").find_all("tr")
     for data_element in data_containers[:2]:
         cols = data_element.find_all("td")
-        col_wrap = []
+        col_wrap = {'title': '', 'img': ''}
         for index, col in enumerate(cols):
             if (index == 1):
                 removedAttr = str(col.text)[:-4]
@@ -79,10 +79,11 @@ def ingpoGempa(data=[]):
 
                 base64_data = base64.b64encode(
                     requests.get(url).content).decode("utf-8")
-                col_wrap.append(base64_data)
+                col_wrap['img'] = base64_data
 
             if (index == 5):
-                col_wrap.append(col.find('a').text)
+                col_wrap['title'] = col.find('a').text
+
         data.append(col_wrap)
 
     return jsonify(data)
